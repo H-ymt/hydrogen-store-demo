@@ -75,14 +75,18 @@ does a `mock.shop` host in `PUBLIC_STORE_DOMAIN`.
 
 ## Scripts
 
-| Script | Does |
-| --- | --- |
-| `npm run dev` | Start the Vite dev server with Mini Oxygen. |
-| `npm run dev:https` | Start the Vite dev server with trusted local HTTPS. |
-| `npm run build` | Production React Router build for Oxygen. |
-| `npm run preview` | Build and preview locally with Vite and Mini Oxygen. |
-| `npm run deploy` | Deploy to Oxygen with the Shopify CLI. |
-| `npm run typecheck` | React Router typegen + TypeScript + Hydrogen GraphQL checks. |
+| Script                 | Does                                                         |
+| ---------------------- | ------------------------------------------------------------ |
+| `npm run dev`          | Start the Vite dev server with Mini Oxygen.                  |
+| `npm run dev:https`    | Start the Vite dev server with trusted local HTTPS.          |
+| `npm run build`        | Production React Router build for Oxygen.                    |
+| `npm run preview`      | Build and preview locally with Vite and Mini Oxygen.         |
+| `npm run deploy`       | Deploy to Oxygen with the Shopify CLI.                       |
+| `npm run typecheck`    | React Router typegen + TypeScript + Hydrogen GraphQL checks. |
+| `npm run lint`         | Lint with oxlint.                                            |
+| `npm run lint:fix`     | Lint with oxlint and auto-fix.                               |
+| `npm run format`       | Format with oxfmt.                                           |
+| `npm run format:check` | Check formatting with oxfmt.                                 |
 
 ## Where to start
 

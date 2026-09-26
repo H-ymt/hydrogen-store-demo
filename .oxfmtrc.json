@@ -1,0 +1,5 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  // .agents / .claude 配下は外部由来のリファレンス文書のため対象外
+  "ignorePatterns": [".agents/**", ".claude/**"]
+}

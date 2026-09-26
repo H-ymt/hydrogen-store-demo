@@ -9,7 +9,11 @@
     "dev": "vite dev",
     "dev:https": "hydrogen skills check --mode=warn && vite dev",
     "preview": "react-router build && vite preview",
-    "typecheck": "react-router typegen && tsc && hydrogen gql check --fail-on-warn"
+    "typecheck": "react-router typegen && tsc && hydrogen gql check --fail-on-warn",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "@shopify/hydrogen": "2026.10.0-preview.3",
@@ -29,6 +33,8 @@
     "@types/react-dom": "^19.2.3",
     "gql.tada": "^1.9.2",
     "graphql": "^16.13.2",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
     "vite": "^8.0.3"
