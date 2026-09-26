@@ -5,15 +5,15 @@ const linkClass =
 
 export function Footer() {
   return (
-    <footer className="max-w-page px-margin mx-auto w-full">
-      <div className="border-border grid grid-cols-1 gap-8 border-t py-12 text-sm md:grid-cols-2 lg:grid-cols-4">
+    <footer className="mx-auto w-full max-w-page px-margin">
+      <div className="grid grid-cols-1 gap-8 border-t border-border py-12 text-sm md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h2 className="type-body-sm text-on-surface mb-4 font-medium">CORE</h2>
+          <h2 className="type-body-sm mb-4 font-medium text-on-surface">CORE</h2>
           <p className="text-on-surface-secondary">&copy; 2026 CORE</p>
         </div>
         <nav aria-labelledby="footer-quick-links-heading">
           <h2
-            className="type-body-sm text-on-surface mb-4 font-medium"
+            className="type-body-sm mb-4 font-medium text-on-surface"
             id="footer-quick-links-heading"
           >
             Quick links
@@ -38,7 +38,7 @@ export function Footer() {
         </nav>
         <nav aria-labelledby="footer-customer-care-heading">
           <h2
-            className="type-body-sm text-on-surface mb-4 font-medium"
+            className="type-body-sm mb-4 font-medium text-on-surface"
             id="footer-customer-care-heading"
           >
             Customer care
@@ -57,15 +57,15 @@ export function Footer() {
           </ul>
         </nav>
         <div>
-          <h2 className="type-body-sm text-on-surface mb-4 font-medium">Payment methods</h2>
+          <h2 className="type-body-sm mb-4 font-medium text-on-surface">Payment methods</h2>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="border-border text-on-surface-secondary rounded-sm border px-2 py-1 text-xs">
+            <span className="rounded-sm border border-border px-2 py-1 text-xs text-on-surface-secondary">
               Visa
             </span>
-            <span className="border-border text-on-surface-secondary rounded-sm border px-2 py-1 text-xs">
+            <span className="rounded-sm border border-border px-2 py-1 text-xs text-on-surface-secondary">
               Mastercard
             </span>
-            <span className="border-border text-on-surface-secondary rounded-sm border px-2 py-1 text-xs">
+            <span className="rounded-sm border border-border px-2 py-1 text-xs text-on-surface-secondary">
               Shop Pay
             </span>
           </div>

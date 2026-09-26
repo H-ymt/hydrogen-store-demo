@@ -65,12 +65,12 @@ export async function loader({ context }: Route.LoaderArgs) {
 
 function Hero() {
   return (
-    <section className="max-w-page px-margin mx-auto w-full">
+    <section className="mx-auto w-full max-w-page px-margin">
       <div
-        className="bleed-full min-h-hero relative overflow-hidden"
+        className="relative bleed-full min-h-hero overflow-hidden"
         aria-labelledby="hero-heading"
       >
-        <div className="bg-surface-secondary absolute inset-0">
+        <div className="absolute inset-0 bg-surface-secondary">
           <img
             src={HERO.image.url}
             alt={HERO.image.altText}
@@ -80,7 +80,7 @@ function Hero() {
           />
         </div>
         <div className="overlay-dark pointer-events-none absolute inset-0" aria-hidden="true" />
-        <div className="max-w-page px-margin text-interactive-text min-h-hero relative z-10 mx-auto flex flex-col items-start justify-end p-8 pb-12">
+        <div className="relative z-10 mx-auto flex min-h-hero max-w-page flex-col items-start justify-end p-8 px-margin pb-12 text-interactive-text">
           <h1 id="hero-heading" className="type-display mb-3 max-w-2xl">
             {HERO.heading}
           </h1>
@@ -88,13 +88,13 @@ function Hero() {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               to={HERO.primaryCta.to}
-              className="rounded-button button-primary focus-visible:outline-accent inline-flex h-11 items-center justify-center gap-2 px-5 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+              className="button-primary inline-flex h-11 items-center justify-center gap-2 rounded-button px-5 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
             >
               {HERO.primaryCta.label}
             </Link>
             <a
               href={HERO.secondaryCta.href}
-              className="rounded-button button-secondary focus-visible:outline-accent inline-flex h-11 items-center justify-center gap-2 px-5 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+              className="button-secondary inline-flex h-11 items-center justify-center gap-2 rounded-button px-5 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
             >
               {HERO.secondaryCta.label}
             </a>
@@ -107,14 +107,14 @@ function Hero() {
 
 function BestSellers({ products }: { products: readonly ProductCardData[] }) {
   return (
-    <section className="bg-surface w-full pt-20 pb-12" aria-labelledby="best-sellers-heading">
-      <div className="max-w-page px-margin mx-auto mb-4 flex items-center justify-between gap-4">
+    <section className="w-full bg-surface pt-20 pb-12" aria-labelledby="best-sellers-heading">
+      <div className="mx-auto mb-4 flex max-w-page items-center justify-between gap-4 px-margin">
         <h2 id="best-sellers-heading" className="type-heading-xl">
           Best sellers
         </h2>
         <Link
           to="/collections"
-          className="min-h-touch-target text-on-surface focus-visible:outline-accent inline-flex items-center gap-1 rounded-sm text-sm font-normal no-underline hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-opacity"
+          className="inline-flex min-h-touch-target items-center gap-1 rounded-sm text-sm font-normal text-on-surface no-underline hover:opacity-70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-opacity"
         >
           <span>View all</span>
           <span
@@ -138,7 +138,7 @@ function BestSellers({ products }: { products: readonly ProductCardData[] }) {
       </div>
 
       {products.length > 0 ? (
-        <div className="max-w-page px-margin mx-auto contain-paint">
+        <div className="mx-auto max-w-page px-margin contain-paint">
           <ul
             role="list"
             className="grid grid-cols-1 gap-x-1 gap-y-10 md:grid-cols-2 lg:grid-cols-4"
@@ -158,11 +158,11 @@ function BestSellers({ products }: { products: readonly ProductCardData[] }) {
 function ShopByCategory({ collections }: { collections: readonly CollectionCardData[] }) {
   return (
     <section className="w-full py-12" aria-labelledby="category-heading">
-      <h2 id="category-heading" className="type-heading-xl max-w-page px-margin mx-auto mb-4">
+      <h2 id="category-heading" className="type-heading-xl mx-auto mb-4 max-w-page px-margin">
         Shop by category
       </h2>
       {collections.length > 0 ? (
-        <ul role="list" className="max-w-page px-margin mx-auto grid grid-cols-1 md:grid-cols-3">
+        <ul role="list" className="mx-auto grid max-w-page grid-cols-1 px-margin md:grid-cols-3">
           {collections.map((collection) => (
             <li key={collection.handle}>
               <CollectionCard collection={collection} />

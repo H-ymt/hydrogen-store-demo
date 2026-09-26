@@ -88,11 +88,11 @@ function BreadcrumbJsonLd({ origin }: { origin: string }) {
 function Breadcrumb() {
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="text-on-surface-secondary flex items-center gap-1.5 text-sm">
+      <ol className="flex items-center gap-1.5 text-sm text-on-surface-secondary">
         <li>
           <Link
             to="/"
-            className="hover:text-on-surface rounded-sm py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current motion-safe:transition-colors"
+            className="rounded-sm py-2 hover:text-on-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current motion-safe:transition-colors"
           >
             Home
           </Link>
@@ -101,7 +101,7 @@ function Breadcrumb() {
           /
         </li>
         <li>
-          <span aria-current="page" className="text-on-surface font-medium">
+          <span aria-current="page" className="font-medium text-on-surface">
             Search
           </span>
         </li>
@@ -113,7 +113,7 @@ function Breadcrumb() {
 function SearchHeader({ term }: { term: string }) {
   return (
     <div className="mb-8">
-      <h1 className="type-display text-on-surface mb-6">Search</h1>
+      <h1 className="type-display mb-6 text-on-surface">Search</h1>
       <form
         action="/search"
         method="get"
@@ -121,12 +121,12 @@ function SearchHeader({ term }: { term: string }) {
         aria-label="Search"
         className="mb-8 max-w-lg"
       >
-        <label htmlFor="search-q" className="text-on-surface mb-1.5 block text-sm font-medium">
+        <label htmlFor="search-q" className="mb-1.5 block text-sm font-medium text-on-surface">
           Search
         </label>
         <div className="relative">
           <span
-            className="text-on-surface-secondary pointer-events-none absolute start-3 top-1/2 inline-flex size-5 -translate-y-1/2 items-center justify-center"
+            className="pointer-events-none absolute start-3 top-1/2 inline-flex size-5 -translate-y-1/2 items-center justify-center text-on-surface-secondary"
             aria-hidden="true"
           >
             <img src="/icons/icon-search.svg" alt="" className="size-5" />
@@ -144,7 +144,7 @@ function SearchHeader({ term }: { term: string }) {
             <Link
               to="/search"
               aria-label="Clear search"
-              className="text-on-surface-secondary hover:text-on-surface focus-visible:outline-accent min-h-touch-target min-w-touch-target absolute end-1 top-1/2 inline-flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-colors"
+              className="absolute end-1 top-1/2 inline-flex min-h-touch-target min-w-touch-target -translate-y-1/2 cursor-pointer items-center justify-center rounded-sm text-on-surface-secondary hover:text-on-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-colors"
             >
               <img src="/icons/icon-x.svg" alt="" className="size-4" aria-hidden="true" />
             </Link>
@@ -182,7 +182,7 @@ function NoResults({ term }: { term: string }) {
   return (
     <div aria-live="polite">
       <p className="type-body text-on-surface-secondary">No results for “{term}”</p>
-      <p className="text-on-surface-secondary mt-2 text-sm">
+      <p className="mt-2 text-sm text-on-surface-secondary">
         Check your spelling or try a more general term.
       </p>
     </div>
@@ -207,7 +207,7 @@ function SearchResults({ loaderData }: { loaderData: PerformedSearchData }) {
       <div className="lg:grid lg:grid-cols-[15rem_1fr] lg:gap-10">
         <aside className="hidden lg:block" aria-label="Filters">
           <div className="sticky top-8">
-            <h2 className="type-heading-sm text-on-surface mb-2">Filters</h2>
+            <h2 className="type-heading-sm mb-2 text-on-surface">Filters</h2>
             <FacetForm
               availableFilters={loaderData.availableFilters}
               extraHiddenInputs={searchTermHiddenInput(loaderData.searchTerm)}
@@ -277,7 +277,7 @@ export default function SearchRoute({ loaderData }: Route.ComponentProps) {
         />
       ) : null}
       <main className="flex-1" id="main-content" tabIndex={-1}>
-        <div className="max-w-page px-margin mx-auto w-full py-8 md:py-12">
+        <div className="mx-auto w-full max-w-page px-margin py-8 md:py-12">
           <BreadcrumbJsonLd origin={loaderData.origin} />
           <Breadcrumb />
           <SearchHeader term={loaderData.searchTerm} />

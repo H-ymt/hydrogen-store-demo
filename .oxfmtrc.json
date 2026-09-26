@@ -1,5 +1,10 @@
 {
   "$schema": "./node_modules/oxfmt/configuration_schema.json",
   // .agents / .claude 配下は外部由来のリファレンス文書のため対象外
-  "ignorePatterns": [".agents/**", ".claude/**"]
+  "ignorePatterns": [".agents/**", ".claude/**"],
+  // prettier-plugin-tailwindcss と同じアルゴリズムで class / className をソート。
+  // Tailwind v4 のため entry stylesheet を指定している。
+  "sortTailwindcss": {
+    "stylesheet": "app/app.css"
+  }
 }
