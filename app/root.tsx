@@ -124,10 +124,10 @@ export function Layout({ children }: { children: ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body className="bg-surface text-on-surface font-body flex min-h-svh flex-col antialiased">
+      <body className="flex min-h-svh flex-col bg-surface font-body text-on-surface antialiased">
         <a
           href="#main-content"
-          className="focus-visible:bg-interactive focus-visible:text-interactive-text sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:start-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded focus-visible:px-4 focus-visible:py-2"
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:start-4 focus-visible:top-4 focus-visible:z-50 focus-visible:rounded focus-visible:bg-interactive focus-visible:px-4 focus-visible:py-2 focus-visible:text-interactive-text"
         >
           Skip to content
         </a>
@@ -181,12 +181,12 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     <main
       id="main-content"
       tabIndex={-1}
-      className="max-w-page px-margin mx-auto w-full flex-1 py-12"
+      className="mx-auto w-full max-w-page flex-1 px-margin py-12"
     >
       <h1 className="type-display text-on-surface">{message}</h1>
-      <p className="text-on-surface-secondary mt-4">{details}</p>
+      <p className="mt-4 text-on-surface-secondary">{details}</p>
       {stack ? (
-        <pre className="border-border mt-6 w-full overflow-x-auto rounded border p-4 text-sm">
+        <pre className="mt-6 w-full overflow-x-auto rounded border border-border p-4 text-sm">
           <code>{stack}</code>
         </pre>
       ) : null}

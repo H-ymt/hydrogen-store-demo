@@ -227,13 +227,13 @@ function FacetGroup({
 
   return (
     <details className="block" open>
-      <summary className="marker-hidden text-on-surface flex w-full cursor-pointer items-center justify-between py-4 text-sm font-medium motion-safe:transition motion-safe:active:scale-[0.97]">
+      <summary className="marker-hidden flex w-full cursor-pointer items-center justify-between py-4 text-sm font-medium text-on-surface motion-safe:transition motion-safe:active:scale-[0.97]">
         <span className="inline-flex items-center gap-1.5">
           {filter.label}
           {selectedCount > 0 ? (
             <>
               <span
-                className="bg-interactive text-interactive-text inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs font-medium"
+                className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-interactive px-1 text-xs font-medium text-interactive-text"
                 aria-hidden="true"
               >
                 {selectedCount}
@@ -268,7 +268,7 @@ function ListFacet({ filter, state }: { filter: BrowseFilter; state: CollectionS
       <li key={value.id}>
         <label
           data-testid="facet-option"
-          className="min-h-touch-target text-on-surface flex cursor-pointer items-center gap-2 py-1 text-sm motion-safe:transition-transform motion-safe:active:scale-[0.97]"
+          className="flex min-h-touch-target cursor-pointer items-center gap-2 py-1 text-sm text-on-surface motion-safe:transition-transform motion-safe:active:scale-[0.97]"
         >
           <input
             type="checkbox"
@@ -287,7 +287,7 @@ function ListFacet({ filter, state }: { filter: BrowseFilter; state: CollectionS
             <CheckIcon />
           </span>
           <span className="flex-1">{value.label}</span>
-          <span className="text-on-surface-secondary text-xs">({value.count})</span>
+          <span className="text-xs text-on-surface-secondary">({value.count})</span>
         </label>
       </li>
     );
@@ -329,7 +329,7 @@ function PriceRangeFacet({ state }: { state: CollectionState }) {
           min="0"
           placeholder="Min"
           defaultValue={activePrice?.min ?? ""}
-          className="border-border rounded-input bg-surface text-on-surface w-full border px-3 py-2 text-sm"
+          className="w-full rounded-input border border-border bg-surface px-3 py-2 text-sm text-on-surface"
           onChange={(event) => {
             if (timer.current) clearTimeout(timer.current);
             const form = event.currentTarget.form;
@@ -337,7 +337,7 @@ function PriceRangeFacet({ state }: { state: CollectionState }) {
           }}
         />
       </div>
-      <span className="text-on-surface-secondary text-sm">to</span>
+      <span className="text-sm text-on-surface-secondary">to</span>
       <div className="flex-1">
         <label htmlFor={maxId} className="sr-only">
           Highest price
@@ -349,7 +349,7 @@ function PriceRangeFacet({ state }: { state: CollectionState }) {
           min="0"
           placeholder="Max"
           defaultValue={activePrice?.max ?? ""}
-          className="border-border rounded-input bg-surface text-on-surface w-full border px-3 py-2 text-sm"
+          className="w-full rounded-input border border-border bg-surface px-3 py-2 text-sm text-on-surface"
           onChange={(event) => {
             if (timer.current) clearTimeout(timer.current);
             const form = event.currentTarget.form;
@@ -379,7 +379,7 @@ function ColorSwatchFacet({ filter, state }: { filter: BrowseFilter; state: Coll
       <li key={value.id}>
         <label
           data-testid="facet-option"
-          className="min-h-touch-target min-w-touch-target relative inline-flex cursor-pointer items-center justify-center motion-safe:transition-transform motion-safe:active:scale-[0.93]"
+          className="relative inline-flex min-h-touch-target min-w-touch-target cursor-pointer items-center justify-center motion-safe:transition-transform motion-safe:active:scale-[0.93]"
           title={`${value.label} (${value.count})`}
         >
           <input
@@ -442,7 +442,7 @@ export function Toolbar({
           type="button"
           commandfor={filterDrawerId}
           command="show-modal"
-          className="button-outline rounded-button focus-visible:outline-accent min-h-touch-target inline-flex cursor-pointer items-center gap-2 px-3 py-1.5 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97] lg:hidden"
+          className="button-outline inline-flex min-h-touch-target cursor-pointer items-center gap-2 rounded-button px-3 py-1.5 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97] lg:hidden"
           aria-controls={filterDrawerId}
           aria-haspopup="dialog"
           onClick={() => openDialogFallback(filterDrawerId)}
@@ -455,7 +455,7 @@ export function Toolbar({
           </span>
           Filters
         </button>
-        <span className="text-on-surface-secondary min-w-0 text-sm break-words" aria-live="polite">
+        <span className="min-w-0 text-sm break-words text-on-surface-secondary" aria-live="polite">
           {countText}
         </span>
       </div>
@@ -464,7 +464,7 @@ export function Toolbar({
         {extraHiddenInputs}
         <label
           htmlFor="sort-by"
-          className="text-on-surface-secondary shrink-0 text-sm whitespace-nowrap"
+          className="shrink-0 text-sm whitespace-nowrap text-on-surface-secondary"
         >
           Sort by
         </label>
@@ -509,7 +509,7 @@ export function FacetForm({
       <fieldset disabled={isLoading} className="m-0 border-0 p-0">
         <div
           key={`${serialized.toString()}:${remountKey ?? ""}`}
-          className="divide-border divide-y"
+          className="divide-y divide-border"
         >
           {availableFilters.map((filter) => (
             <FacetGroup key={filter.id} filter={filter} state={state}>
@@ -521,7 +521,7 @@ export function FacetForm({
       <noscript>
         <button
           type="submit"
-          className="rounded-button button-primary focus-visible:outline-accent mt-4 inline-flex h-11 items-center justify-center px-4 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="button-primary mt-4 inline-flex h-11 items-center justify-center rounded-button px-4 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
         >
           Apply filters
         </button>
@@ -550,14 +550,14 @@ export function FilterDrawer({
     >
       <div className="flex h-full flex-col">
         <div className="flex shrink-0 items-center py-2 ps-4">
-          <h2 id="filter-drawer-title" className="text-on-surface flex-1 text-lg font-medium">
+          <h2 id="filter-drawer-title" className="flex-1 text-lg font-medium text-on-surface">
             Filters
           </h2>
           <button
             type="button"
             commandfor={id}
             command="close"
-            className="button-icon focus-visible:outline-accent inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+            className="button-icon inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
             aria-label="Close"
             onClick={() => closeDialog(id)}
           >
@@ -606,7 +606,7 @@ export function ActiveFilterChips({
             key={`${label}-${index}-${removal}`}
             to={to}
             preventScrollReset
-            className="chip-filled hover:bg-border min-h-touch-target inline-flex items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-sm no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+            className="chip-filled inline-flex min-h-touch-target items-center justify-center gap-1.5 rounded-full px-3 py-1.5 text-sm no-underline hover:bg-border focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
             aria-label={`Remove ${label} filter`}
           >
             {label}
@@ -619,7 +619,7 @@ export function ActiveFilterChips({
           </Link>
         );
       })}
-      <Link to={clearAllTo} preventScrollReset className="text-accent text-sm hover:underline">
+      <Link to={clearAllTo} preventScrollReset className="text-sm text-accent hover:underline">
         Clear all
       </Link>
     </div>
@@ -690,14 +690,14 @@ export function LoadMore({
 
   return (
     <div className="mt-12 flex flex-col items-center gap-3">
-      <p className="text-on-surface-secondary text-sm">
+      <p className="text-sm text-on-surface-secondary">
         {countLabel ?? `Showing ${loadedCount} products`}
       </p>
       <Link
         to={href}
         preventScrollReset
         aria-disabled={isLoading}
-        className={`button-outline rounded-button focus-visible:outline-accent inline-flex h-11 items-center justify-center gap-2 px-6 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97] ${isLoading ? "pointer-events-none opacity-50" : ""}`}
+        className={`button-outline inline-flex h-11 items-center justify-center gap-2 rounded-button px-6 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97] ${isLoading ? "pointer-events-none opacity-50" : ""}`}
         onClick={(event) => {
           event.preventDefault();
           if (!isLoading) onLoad(href, nextSearch);

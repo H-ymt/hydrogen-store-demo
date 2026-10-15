@@ -1,0 +1,27 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "react", "react-perf", "jsx-a11y", "import"],
+  "categories": {
+    "correctness": "error"
+  },
+  // 既存コードで検出されるものは warn に落としている。新規コードでは
+  // 警告が出ないように書くこと。段階的に修正して error に戻す想定。
+  "rules": {
+    "no-empty-pattern": "off",
+    "react/set-state-in-effect": "warn",
+    "jsx-a11y/no-redundant-roles": "warn",
+    "jsx-a11y/anchor-is-valid": "warn",
+    "jsx-a11y/prefer-tag-over-role": "warn",
+    "jsx-a11y/no-noninteractive-tabindex": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "19.0.0"
+    }
+  },
+  "env": {
+    "builtin": true,
+    "browser": true
+  },
+  "ignorePatterns": ["dist/**", "build/**", ".react-router/**", "node_modules/**"]
+}

@@ -313,7 +313,7 @@ function ProductGallery({
               aria-label={`Slide ${index + 1} of ${images.length}`}
               className="w-full shrink-0 snap-center contain-paint md:w-auto md:shrink"
             >
-              <div className="bg-surface-secondary aspect-square overflow-hidden">
+              <div className="aspect-square overflow-hidden bg-surface-secondary">
                 <img
                   src={image.url}
                   alt={image.altText ?? product.title}
@@ -363,20 +363,20 @@ function PriceBlock({
       <div className="inline-flex flex-wrap items-baseline gap-2">
         {compareAt && percent ? (
           <>
-            <span className="text-sale font-medium">
+            <span className="font-medium text-sale">
               <span className="sr-only">Sale price: </span>
               {formatPrice(price)}
             </span>
-            <s className="text-compare text-sm">
+            <s className="text-sm text-compare">
               <span className="sr-only">Regular price: </span>
               {formatPrice(compareAt)}
             </s>
-            <span className="text-sale text-sm font-medium" aria-label={`Save ${percent}%`}>
+            <span className="text-sm font-medium text-sale" aria-label={`Save ${percent}%`}>
               (-{percent}%)
             </span>
           </>
         ) : (
-          <span className="text-on-surface font-medium">
+          <span className="font-medium text-on-surface">
             <span className="sr-only">Price: </span>
             {formatPrice(price)}
           </span>
@@ -393,10 +393,10 @@ function InventoryHint({ selectedVariant }: { selectedVariant: ProductVariant | 
       <div className="mt-3">
         <div className="flex items-center gap-2 text-sm" data-product-inventory>
           <span
-            className="bg-critical inline-block h-2 w-2 shrink-0 rounded-full"
+            className="inline-block h-2 w-2 shrink-0 rounded-full bg-critical"
             aria-hidden="true"
           />
-          <span className="text-critical font-medium">Out of stock</span>
+          <span className="font-medium text-critical">Out of stock</span>
         </div>
       </div>
     );
@@ -409,10 +409,10 @@ function InventoryHint({ selectedVariant }: { selectedVariant: ProductVariant | 
     <div className="mt-3">
       <div className="flex items-center gap-2 text-sm" data-product-inventory>
         <span
-          className="bg-warning inline-block h-2 w-2 shrink-0 rounded-full"
+          className="inline-block h-2 w-2 shrink-0 rounded-full bg-warning"
           aria-hidden="true"
         />
-        <span className="text-warning font-medium">Only {quantity} left in stock</span>
+        <span className="font-medium text-warning">Only {quantity} left in stock</span>
       </div>
     </div>
   );
@@ -433,7 +433,7 @@ function VariantOptions({ product }: { product: ProductData }) {
 
         return (
           <fieldset key={option.name} className="space-y-2">
-            <legend className="text-on-surface text-sm font-medium">
+            <legend className="text-sm font-medium text-on-surface">
               {option.name}
               {selectedValue ? `: ${selectedValue}` : ""}
             </legend>
@@ -460,7 +460,7 @@ function VariantOptions({ product }: { product: ProductData }) {
                   const content = (
                     <>
                       <span
-                        className={`swatch-md border-border relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 ring-offset-2 ${variantOption.selected ? "border-interactive" : ""}`}
+                        className={`swatch-md relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 border-border ring-offset-2 ${variantOption.selected ? "border-interactive" : ""}`}
                         style={swatchStyle}
                       >
                         {variantOption.selected ? (
@@ -492,7 +492,7 @@ function VariantOptions({ product }: { product: ProductData }) {
                         key={valueName}
                         to={toRouterLocation(linkTarget)}
                         preventScrollReset
-                        className={`min-h-touch-target min-w-touch-target relative inline-flex cursor-pointer items-center justify-center motion-safe:transition-transform motion-safe:active:scale-[0.93] ${!variantOption.available ? "opacity-50" : ""}`}
+                        className={`relative inline-flex min-h-touch-target min-w-touch-target cursor-pointer items-center justify-center motion-safe:transition-transform motion-safe:active:scale-[0.93] ${!variantOption.available ? "opacity-50" : ""}`}
                         aria-label={valueName}
                         aria-pressed={variantOption.selected}
                         data-testid={isColorOption ? "color-swatch" : undefined}
@@ -507,7 +507,7 @@ function VariantOptions({ product }: { product: ProductData }) {
                       key={valueName}
                       type="button"
                       {...registered}
-                      className={`min-h-touch-target min-w-touch-target relative inline-flex cursor-pointer items-center justify-center motion-safe:transition-transform motion-safe:active:scale-[0.93] ${!variantOption.available ? "opacity-50" : ""}`}
+                      className={`relative inline-flex min-h-touch-target min-w-touch-target cursor-pointer items-center justify-center motion-safe:transition-transform motion-safe:active:scale-[0.93] ${!variantOption.available ? "opacity-50" : ""}`}
                       aria-label={valueName}
                       aria-pressed={variantOption.selected}
                       disabled={!variantOption.exists}
@@ -569,16 +569,16 @@ function QuantitySelector({
 
   return (
     <div className="shrink-0">
-      <label className="text-on-surface mb-2 block text-sm font-medium" htmlFor="quantity">
+      <label className="mb-2 block text-sm font-medium text-on-surface" htmlFor="quantity">
         Quantity
       </label>
       <div
-        className="quantity-selector-outlined rounded-input inline-flex items-center"
+        className="quantity-selector-outlined inline-flex items-center rounded-input"
         data-testid="quantity-stepper"
       >
         <button
           type="button"
-          className="text-on-surface-secondary hover:text-on-surface inline-flex size-11 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
+          className="inline-flex size-11 items-center justify-center text-on-surface-secondary hover:text-on-surface disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
           aria-label="Decrease quantity"
           onClick={() => setQuantity(clamp(quantity - 1))}
           disabled={quantity <= 1}
@@ -592,7 +592,7 @@ function QuantitySelector({
           min={1}
           max={99}
           step={1}
-          className="number-reset text-on-surface h-11 w-12 rounded-none border-0 bg-transparent p-0 text-center text-sm"
+          className="number-reset h-11 w-12 rounded-none border-0 bg-transparent p-0 text-center text-sm text-on-surface"
           aria-label="Quantity"
           onChange={(event) =>
             setQuantity(clamp(Number.parseInt(event.currentTarget.value, 10) || 1))
@@ -600,7 +600,7 @@ function QuantitySelector({
         />
         <button
           type="button"
-          className="text-on-surface-secondary hover:text-on-surface inline-flex size-11 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
+          className="inline-flex size-11 items-center justify-center text-on-surface-secondary hover:text-on-surface disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
           aria-label="Increase quantity"
           onClick={() => setQuantity(clamp(quantity + 1))}
           disabled={quantity >= 99}
@@ -643,9 +643,9 @@ function AddToCart({
         <div className="mb-4">
           <label
             htmlFor="engraving-text"
-            className="type-body-sm text-on-surface mb-2 block font-medium"
+            className="type-body-sm mb-2 block font-medium text-on-surface"
           >
-            Engraving text <span className="text-on-surface-secondary font-normal">(optional)</span>
+            Engraving text <span className="font-normal text-on-surface-secondary">(optional)</span>
           </label>
           <input
             id="engraving-text"
@@ -654,12 +654,12 @@ function AddToCart({
             placeholder="e.g. Happy Birthday"
             value={engravingText}
             onChange={(e) => setEngravingText(e.target.value)}
-            className="border-border text-on-surface placeholder:text-on-surface-secondary rounded-input h-11 w-full border px-3 text-sm focus:outline-2 focus:outline-offset-2"
+            className="h-11 w-full rounded-input border border-border px-3 text-sm text-on-surface placeholder:text-on-surface-secondary focus:outline-2 focus:outline-offset-2"
           />
         </div>
         <button
           type="submit"
-          className="rounded-button button-primary focus-visible:outline-accent inline-flex h-11 w-full cursor-pointer items-center justify-center gap-2 px-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+          className="button-primary inline-flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-button px-3 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
           disabled={!addable || pending}
           data-testid="add-to-cart"
         >
@@ -712,7 +712,7 @@ function ProductInfo({
     <div className="flex flex-col gap-6 md:sticky md:top-8 md:self-start">
       <div className="pt-4 md:pt-8">
         {product.vendor ? (
-          <p className="type-body-sm text-on-surface-secondary mb-4 tracking-wide uppercase">
+          <p className="type-body-sm mb-4 tracking-wide text-on-surface-secondary uppercase">
             {product.vendor}
           </p>
         ) : null}
@@ -724,7 +724,7 @@ function ProductInfo({
       <span className="sr-only" aria-live="polite" id="inventory-status" />
 
       {product.description ? (
-        <div className="type-body-sm text-on-surface-secondary leading-relaxed">
+        <div className="type-body-sm leading-relaxed text-on-surface-secondary">
           {product.description}
         </div>
       ) : null}
@@ -739,8 +739,8 @@ function ProductInfo({
       </div>
 
       <h2 className="sr-only">Product details</h2>
-      <details className="group border-border border-t border-b" name="product-details" open>
-        <summary className="marker-hidden text-on-surface hover:text-on-surface-secondary flex cursor-pointer items-center justify-between px-1 py-4 text-sm font-medium">
+      <details className="group border-t border-b border-border" name="product-details" open>
+        <summary className="marker-hidden flex cursor-pointer items-center justify-between px-1 py-4 text-sm font-medium text-on-surface hover:text-on-surface-secondary">
           <span className="text-sm font-medium">Description</span>
           <span
             className="ms-4 size-4 shrink-0 group-open:rotate-180 motion-safe:transition-transform motion-safe:duration-200"
@@ -749,7 +749,7 @@ function ProductInfo({
             <img src="/icons/icon-chevron-down.svg" alt="" className="size-4" />
           </span>
         </summary>
-        <div className="richtext text-on-surface-secondary px-1 pb-4 text-sm">
+        <div className="richtext px-1 pb-4 text-sm text-on-surface-secondary">
           {product.descriptionHtml ? (
             <div dangerouslySetInnerHTML={{ __html: product.descriptionHtml }} />
           ) : (
@@ -765,7 +765,7 @@ function ProductPageContent({ product }: { product: ProductData }) {
   const { selectedVariant } = useProductForm();
 
   return (
-    <section className="max-w-page px-margin mx-auto w-full pb-4">
+    <section className="mx-auto w-full max-w-page px-margin pb-4">
       <div className="product-grid mb-16 grid grid-cols-1 gap-6 md:gap-12">
         <ProductGallery product={product} selectedVariant={selectedVariant} />
         <ProductInfo product={product} selectedVariant={selectedVariant} />
@@ -779,14 +779,14 @@ function RelatedProducts({ products }: { products: RelatedProduct[] }) {
 
   return (
     <section className="py-4" aria-labelledby="related-products-heading">
-      <div className="border-border border-t pt-12">
+      <div className="border-t border-border pt-12">
         <h2
           id="related-products-heading"
-          className="type-heading-xl max-w-page px-margin mx-auto mb-8"
+          className="type-heading-xl mx-auto mb-8 max-w-page px-margin"
         >
           You may also like
         </h2>
-        <div className="max-w-page px-margin mx-auto contain-paint">
+        <div className="mx-auto max-w-page px-margin contain-paint">
           <ul
             role="list"
             className="grid grid-cols-1 gap-x-1 gap-y-10 md:grid-cols-2 lg:grid-cols-4"

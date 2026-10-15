@@ -19,7 +19,7 @@ function CartErrorBanner() {
   if (messages.length === 0 || errors.lastUpdatedAt <= dismissedAt) return null;
 
   return (
-    <div className="border-border bg-surface-secondary mx-4 mb-2 rounded p-3 text-sm" role="alert">
+    <div className="mx-4 mb-2 rounded border-border bg-surface-secondary p-3 text-sm" role="alert">
       <div className="flex items-start justify-between gap-3">
         <div className="grid gap-1">
           {messages.map((message) => (
@@ -30,7 +30,7 @@ function CartErrorBanner() {
         </div>
         <button
           type="button"
-          className="button-ghost focus-visible:outline-accent rounded px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+          className="button-ghost rounded px-2 py-1 text-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           onClick={() => setDismissedAt(errors.lastUpdatedAt)}
         >
           Dismiss
@@ -95,7 +95,7 @@ export function CartLineItem({ line }: { line: CartLineView }) {
       data-testid="cart-line"
       {...(pending ? { "aria-busy": "true" } : {})}
     >
-      <div className="bg-surface-secondary size-20 shrink-0 overflow-hidden">
+      <div className="size-20 shrink-0 overflow-hidden bg-surface-secondary">
         {merchandise?.image ? (
           <img
             src={merchandise.image.url}
@@ -106,7 +106,7 @@ export function CartLineItem({ line }: { line: CartLineView }) {
         ) : null}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="type-body-sm text-on-surface font-medium">
+        <p className="type-body-sm font-medium text-on-surface">
           {product?.handle ? (
             <Link to={`/products/${product.handle}`} className="text-on-surface no-underline">
               {product.title ?? merchandise?.title ?? "Product"}
@@ -115,32 +115,32 @@ export function CartLineItem({ line }: { line: CartLineView }) {
             (product?.title ?? merchandise?.title ?? "Product")
           )}
         </p>
-        {optionText ? <p className="text-on-surface-secondary mt-1 text-xs">{optionText}</p> : null}
+        {optionText ? <p className="mt-1 text-xs text-on-surface-secondary">{optionText}</p> : null}
         {line.attributes
           ?.filter((attr) => !attr.key.startsWith("_") && attr.value != null)
           .map((attr) => (
-            <p key={attr.key} className="text-on-surface-secondary mt-1 text-xs italic">
+            <p key={attr.key} className="mt-1 text-xs text-on-surface-secondary italic">
               {attr.key}: {attr.value}
             </p>
           ))}
-        <p className={`text-on-surface mt-2 text-sm ${pending ? "opacity-50" : ""}`}>
+        <p className={`mt-2 text-sm text-on-surface ${pending ? "opacity-50" : ""}`}>
           {formatPrice(line.cost.totalAmount)}
         </p>
         <form {...formProps()} className="mt-3 flex items-center gap-2">
           <button {...register("set")} />
           <input type="hidden" {...register("lineId", { value: line.id })} />
-          <div className="quantity-selector-outlined rounded-input inline-flex items-center">
+          <div className="quantity-selector-outlined inline-flex items-center rounded-input">
             <button
               type="submit"
               {...register("decrease")}
-              className="text-on-surface-secondary hover:text-on-surface inline-flex size-11 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
+              className="inline-flex size-11 items-center justify-center text-on-surface-secondary hover:text-on-surface disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
               aria-label={`Decrease quantity for ${product?.title ?? merchandise?.title ?? "item"}`}
             >
               <img src="/icons/icon-minus.svg" alt="" className="size-4" aria-hidden="true" />
             </button>
             <input
               {...register("quantity", { value: line.quantity, interactive: true })}
-              className={`number-reset text-on-surface h-11 w-12 rounded-none border-0 bg-transparent p-0 text-center text-sm ${pending ? "opacity-50" : ""}`}
+              className={`number-reset h-11 w-12 rounded-none border-0 bg-transparent p-0 text-center text-sm text-on-surface ${pending ? "opacity-50" : ""}`}
               aria-label="Quantity"
               aria-describedby={lineError?.userErrors.length ? errorId : undefined}
               aria-invalid={lineError?.userErrors.length ? true : undefined}
@@ -148,7 +148,7 @@ export function CartLineItem({ line }: { line: CartLineView }) {
             <button
               type="submit"
               {...register("increase")}
-              className="text-on-surface-secondary hover:text-on-surface inline-flex size-11 items-center justify-center disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
+              className="inline-flex size-11 items-center justify-center text-on-surface-secondary hover:text-on-surface disabled:cursor-not-allowed disabled:opacity-50 motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
               aria-label={`Increase quantity for ${product?.title ?? merchandise?.title ?? "item"}`}
             >
               <img src="/icons/icon-plus.svg" alt="" className="size-4" aria-hidden="true" />
@@ -157,14 +157,14 @@ export function CartLineItem({ line }: { line: CartLineView }) {
           <button
             type="submit"
             {...register("remove")}
-            className="text-on-surface-secondary hover:text-on-surface inline-flex size-11 items-center justify-center rounded motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
+            className="inline-flex size-11 items-center justify-center rounded text-on-surface-secondary hover:text-on-surface motion-safe:transition-[color,transform] motion-safe:active:scale-[0.90]"
             aria-label={`Remove ${product?.title ?? merchandise?.title ?? "item"}`}
           >
             <img src="/icons/icon-trash.svg" alt="" className="size-5" aria-hidden="true" />
           </button>
         </form>
         {lineError?.userErrors.length ? (
-          <p id={errorId} className="text-critical mt-2 text-sm" role="alert">
+          <p id={errorId} className="mt-2 text-sm text-critical" role="alert">
             {lineError.userErrors[0]?.message}
           </p>
         ) : null}
@@ -178,14 +178,14 @@ function CartLines() {
   const lines = useCart((state) => state.data.lines.nodes);
 
   if (loading) {
-    return <p className="text-on-surface-secondary type-body-sm">Loading cart…</p>;
+    return <p className="type-body-sm text-on-surface-secondary">Loading cart…</p>;
   }
 
   if (lines.length === 0) {
     return (
       <div className="flex h-full flex-col items-center justify-center text-center">
-        <p className="text-on-surface font-medium">Your cart is empty.</p>
-        <p className="text-on-surface-secondary mt-2 text-sm">
+        <p className="font-medium text-on-surface">Your cart is empty.</p>
+        <p className="mt-2 text-sm text-on-surface-secondary">
           Looks like you haven&apos;t added anything to your cart yet.
         </p>
       </div>
@@ -193,7 +193,7 @@ function CartLines() {
   }
 
   return (
-    <ul role="list" className="divide-border -mt-4 divide-y">
+    <ul role="list" className="-mt-4 divide-y divide-border">
       {lines.map((line) => (
         <CartLineItem key={line.id} line={line} />
       ))}
@@ -211,20 +211,20 @@ function CartFooter() {
   if (!hasLines) return null;
 
   return (
-    <div className="border-border shrink-0 border-t p-4">
+    <div className="shrink-0 border-t border-border p-4">
       <div className="flex flex-col gap-3">
         <div className="flex items-center justify-between" aria-busy={isPending}>
-          <span className="text-on-surface text-sm font-medium">
+          <span className="text-sm font-medium text-on-surface">
             Estimated total
             {isPending ? <span aria-hidden="true"> (updating)</span> : null}
           </span>
           <span
-            className={`text-on-surface text-base font-medium ${isPending ? "text-on-surface-secondary" : ""}`}
+            className={`text-base font-medium text-on-surface ${isPending ? "text-on-surface-secondary" : ""}`}
           >
             {formatPrice(cart.cost.totalAmount)}
           </span>
         </div>
-        <p className="text-on-surface-secondary text-xs">
+        <p className="text-xs text-on-surface-secondary">
           Taxes and shipping calculated at checkout
         </p>
         {cart.checkoutUrl ? (
@@ -232,7 +232,7 @@ function CartFooter() {
             <ShopPayButton width="100%" borderRadius="8px" />
             <a
               href={cart.checkoutUrl}
-              className="rounded-button button-primary focus-visible:outline-accent inline-flex h-11 w-full items-center justify-center gap-2 px-4 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+              className="button-primary inline-flex h-11 w-full items-center justify-center gap-2 rounded-button px-4 text-sm font-medium no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
             >
               Checkout
             </a>
@@ -280,7 +280,7 @@ export function CartDrawer() {
         <div className="flex h-full flex-col">
           <div className="flex shrink-0 items-center py-2 ps-4">
             <div className="flex flex-1 items-center gap-2">
-              <h2 id="cart-drawer-title" className="text-on-surface text-lg font-medium">
+              <h2 id="cart-drawer-title" className="text-lg font-medium text-on-surface">
                 Cart
               </h2>
               <span className="cart-count-badge">{totalQuantity}</span>
@@ -289,7 +289,7 @@ export function CartDrawer() {
               type="button"
               commandfor={CART_DRAWER_ID}
               command="close"
-              className="button-icon focus-visible:outline-accent inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
+              className="button-icon inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent motion-safe:transition-[color,background-color,border-color,transform] motion-safe:active:scale-[0.97]"
               aria-label="Close"
               onClick={() => closeCartDrawer()}
             >
